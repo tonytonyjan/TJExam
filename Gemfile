@@ -6,6 +6,9 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'simple_form'
+gem 'dynamic_form'
+gem 'rails-i18n'
 
 
 # Gems used only for assets and not required

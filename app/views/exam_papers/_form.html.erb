@@ -1,0 +1,7 @@
+<%= simple_form_for @exam_paper do |f|%>
+  <%= f.input :name %>
+  <%= f.simple_fields_for :questions do |ff| %>
+    <pre><%= ff.object.content %></pre>
+  <% end %>
+  <%= f.submit %>
+<% end %>

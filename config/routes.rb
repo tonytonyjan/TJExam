@@ -1,8 +1,10 @@
 Tjexam::Application.routes.draw do
+  resources :exam_papers
+
+  resources :questions
+
   get "home/index"
-
   get "home/about"
-
   get "home/contact"
 
   # The priority is based upon order of creation:
