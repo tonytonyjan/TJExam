@@ -9,18 +9,18 @@
       <a class="brand" href="/">TJExam</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <%= nav_li "About", home_about_path %>
-          <%= nav_li "Contact", home_contact_path %>
+          <%= nav_li t("navbar.about"), home_about_path %>
+          <%= nav_li t("navbar.contact"), home_contact_path %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Management<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t("navbar.management") %><b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li class="nav-header">Question</li>
-              <%= nav_li "Browse", questions_path %>
-              <%= nav_li "New", new_question_path %>
+              <li class="nav-header"><%= t("navbar.browse") %></li>
+              <%= nav_li Question.model_name.human, questions_path %>
+              <%= nav_li ExamPaper.model_name.human, exam_papers_path %>
               <li class="divider"></li>
-              <li class="nav-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li class="nav-header"><%= t("navbar.new") %></li>
+              <%= nav_li Question.model_name.human, new_question_path %>
+              <%= nav_li ExamPaper.model_name.human, new_exam_paper_path %>
             </ul>
           </li>
         </ul>

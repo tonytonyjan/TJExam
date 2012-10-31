@@ -1,0 +1,4 @@
+<%= link_to "Download Exam", download_exam_paper_path, :class => "btn btn-primary btn-large", :target => :_blank %>
+<%= link_to "Download Solution", download_exam_paper_path(:download_options => {:solution => true}), :class => "btn btn-success btn-large", :target => :_blank %>  
+<br><br>
+<pre><%= @exam_paper.to_latex params[:download_options]%></pre>

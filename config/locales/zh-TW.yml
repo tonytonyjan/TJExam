@@ -1,0 +1,23 @@
+zh-TW:
+  home:
+    index:
+      try_it_now: 馬上體驗
+  share:
+    preview: 預覽
+    formula_preview: 公式預覽
+  navbar:
+    about: 關於
+    contact: 聯絡
+    management: 管理
+    browse: 瀏覽
+    new: 新增
+  activerecord:
+    models:
+      question: 試題
+      exam_paper: 試卷
+    attributes:
+      question:
+        content: 內容
+      exam_paper:
+        name: 名稱
+        questions: 試題

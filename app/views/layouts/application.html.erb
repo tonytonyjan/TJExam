@@ -12,6 +12,8 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
 
+    <%= yield :head %>
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -27,7 +29,8 @@
   <body>
     <%= render "share/navbar" %>
     <div class="container">
-      <%= page_header @header %>
+      <%= notice_message %>
+      <%= page_header @header if @header.present? %>
       <%= yield %>
       <hr>
       <footer>

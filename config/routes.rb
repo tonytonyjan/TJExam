@@ -1,6 +1,7 @@
 Tjexam::Application.routes.draw do
-  resources :exam_papers
-
+  resources :exam_papers do
+    get "download", :on => :member
+  end
   resources :questions
 
   get "home/index"

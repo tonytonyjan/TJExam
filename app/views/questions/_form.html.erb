@@ -1,4 +1,16 @@
+<%= content_for :head do %>
+  <%= render "share/mathjax" %>
+<% end %>
+
 <%= simple_form_for @question do |f| %>
-  <%= f.input :content %>
-  <%= f.submit %>
+  <div class="row">
+    <div class="span6">
+      <%= f.input :content, :input_html => {:class => "span6"} %>
+    </div>
+    <div class="span6">
+      <p><%= t("share.formula_preview") %></p>
+      <p id="question_preview" class="well"></p>
+    </div>
+  </div>
+  <%= f.submit :class => "btn btn-large" %>
 <% end %>

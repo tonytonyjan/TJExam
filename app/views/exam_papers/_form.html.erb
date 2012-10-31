@@ -1,7 +1,9 @@
+<%= content_for :head do %>
+  <%= render "share/mathjax" %>
+<% end %>
+
 <%= simple_form_for @exam_paper do |f|%>
-  <%= f.input :name %>
-  <%= 
-    #f.association :questions, :as => :check_boxes, :label_method => :content
-  %>
-  <%= f.submit %>
+  <%= f.input :name, :placeholder => "ex. 課堂抽考 1" %>
+  <%= f.association :questions, :as => :check_boxes, :label_method => :question_string %>
+  <%= f.submit :class => "btn btn-large" %>
 <% end %>

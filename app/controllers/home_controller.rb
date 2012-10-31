@@ -3,10 +3,10 @@ class HomeController < ApplicationController
   end
 
   def about
-    @header = "About"
+    @header = t("navbar.about")
   end
 
   def contact
-    @header = "Contact"
+    @header = t("navbar.contact")
   end
 end

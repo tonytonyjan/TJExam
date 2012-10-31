@@ -1,0 +1,9 @@
+<ul>
+  <% @exam_papers.each do |ep| %>
+    <li>
+      <%= ep.name %>
+      <%= link_to "Show", ep %> <%= link_to "Edit", edit_exam_paper_path(ep) %>
+      <%= link_to "Delete", ep, :method => :delete, :confirm => "Are you sure?" %>
+    </li>
+  <% end %>
+</ul>

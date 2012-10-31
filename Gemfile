@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'simple_form'
 gem 'dynamic_form'
 gem 'rails-i18n'
+gem 'carrierwave'
 
 
 # Gems used only for assets and not required
