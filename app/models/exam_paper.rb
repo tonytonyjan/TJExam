@@ -1,8 +1,7 @@
 # encoding: utf-8
 class ExamPaper < ActiveRecord::Base
-  attr_accessible :name, :questions_attributes
+  attr_accessible :name
   has_and_belongs_to_many :questions
-  accepts_nested_attributes_for :questions
 
   def to_latex
     result = %q{\documentclass[twocolumn]{exam}
