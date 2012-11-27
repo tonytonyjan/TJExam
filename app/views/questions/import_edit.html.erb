@@ -1,0 +1,13 @@
+<% @questions.each do |q| %>
+  <div class="row">
+    <div class="span6">
+      <%= simple_form_for q, remote: true do |f| %>
+        <%= f.input :content, input_html: {rows: 10, class: "span6"} %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+    <div class="span6">
+      <%= q.content.html_safe %>
+    </div>
+  </div>
+<% end %>

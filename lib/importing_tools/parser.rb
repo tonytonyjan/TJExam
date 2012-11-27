@@ -23,5 +23,5 @@ module TJExam
 end
 
 if $0 == __FILE__
-  TJExam::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format/90math-1_format.html"))
+  puts TJExam::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format/90math-1_format.html"))
 end

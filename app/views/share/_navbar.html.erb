@@ -21,6 +21,7 @@
               <li class="nav-header"><%= t("navbar.new") %></li>
               <%= nav_li Question.model_name.human, new_question_path %>
               <%= nav_li ExamPaper.model_name.human, new_exam_paper_path %>
+              <%= nav_li t("navbar.import"), import_upload_questions_path %>
             </ul>
           </li>
         </ul>

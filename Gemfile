@@ -10,6 +10,8 @@ gem 'simple_form'
 gem 'dynamic_form'
 gem 'rails-i18n'
 gem 'carrierwave'
+gem 'thin'
+gem 'nokogiri'
 
 
 # Gems used only for assets and not required

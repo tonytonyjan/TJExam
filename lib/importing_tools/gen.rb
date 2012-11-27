@@ -1,5 +1,5 @@
 require 'tmpdir'
-require './parser'
+require File.expand_path("../parser", __FILE__)
 
 module TJExam
 
@@ -11,7 +11,7 @@ module TJExam
         $stderr.puts $?
         break
       end
-      html_file_name = File::join(dir, File::basename(doc_filepath).sub(/[^.]+$/, 'html'))
+      html_file_name = File::join(dir, File::basename(doc_filepath).sub(/\.[^\.\/]+$|$/, '.html'))
       File::open(html_file_name){|f| 
         ary = TJExam::parse(f)
       }

@@ -11,6 +11,7 @@ zh-TW:
     management: 管理
     browse: 瀏覽
     new: 新增
+    import: 匯入
   activerecord:
     models:
       question: 試題

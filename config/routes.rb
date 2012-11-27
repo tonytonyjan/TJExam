@@ -2,7 +2,13 @@ Tjexam::Application.routes.draw do
   resources :exam_papers do
     get "download", :on => :member
   end
-  resources :questions
+  resources :questions do
+    collection do
+      get "import_upload"
+      post "import_edit"
+      post "import_save"
+    end
+  end
 
   get "home/index"
   get "home/about"

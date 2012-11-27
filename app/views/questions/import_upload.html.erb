@@ -1,0 +1,4 @@
+<%= form_tag({:action => :import_edit}, :multipart => true) do %>
+  <%= file_field_tag 'doc_file' %>
+  <%= submit_tag "Submit" %>
+<% end %>
