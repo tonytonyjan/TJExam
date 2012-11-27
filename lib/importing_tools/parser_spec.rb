@@ -14,5 +14,18 @@ describe TJExam, "#parse" do
   end
   it "splits questions with the separator '==SEPARATOR=='"
   it "identifies tags like【科目】, store in an array"
-  it "returns an hash"
+  it "identifies options like '(A) XXX', store in an array"
+  it "returns an hash" do
+    # {
+    #   content: "",
+    #   options_attributes: {
+    #     content: "",
+    #     is_answer: true
+    #   },
+    #   tags: {
+    #     subjects: ["數學"],
+    #     sources: ["台灣", "大陸"]
+    #   }
+    # }
+  end
 end

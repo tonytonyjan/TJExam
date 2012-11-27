@@ -12,6 +12,7 @@ gem 'rails-i18n'
 gem 'carrierwave'
 gem 'thin'
 gem 'nokogiri'
+gem 'acts-as-taggable-on'
 
 
 # Gems used only for assets and not required
