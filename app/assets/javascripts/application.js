@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery_nested_form
 //= require vendor
 //= require_tree .
 $(document).ready(UTIL.init);

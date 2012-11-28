@@ -1,9 +1,10 @@
 class Question < ActiveRecord::Base
   attr_accessible :content, :tag_list, :subject_list, :question_type_list,
                   :knowledge_point_list, :chapter_location_list, :location_list,
-                  :source_list, :concept_list
+                  :source_list, :concept_list, :solution, :options_attributes
   has_and_belongs_to_many :exam_papers
   has_many :options, dependent: :destroy # d. 答案選項 for 選擇題
+  accepts_nested_attributes_for :options, allow_destroy: true, reject_if: :all_blank
   acts_as_taggable
   acts_as_taggable_on :subjects # a. 科目 (英文, 數學, 自然...)
   acts_as_taggable_on :question_types # b. 題型 (選擇題, 填充題, 問答題)

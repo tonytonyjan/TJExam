@@ -33,7 +33,7 @@ module TJExam
 
     def self.strip_tags! doc
       doc.css('body *').each{|node|
-        if %w(img table tr td thead tbody).include?(node.name)
+        if %w(img table tr td thead tbody u).include?(node.name)
           # Keep image source
           node.attributes.each_value{|attr| attr.remove unless attr.name == "src"}
         else
@@ -48,11 +48,27 @@ module TJExam
     end
 
     # returns a hash for Question's parameters.
+    # note that "【答案】" should appear after "【答案選項】"
     def self.process_question string
       reg = /(?<key>【[^】]*】)(?<value>[^【]*)/m
       params = {}
       string.scan(reg){|m|
         case $~[:key].strip
+        when "【答案選項】"
+          options_reg = /(?<key>[\(（][A-Z][\)）])(?<value>[^\(（]*)/m
+          params[:options_attributes] = []
+          $~[:value].scan(options_reg){|mm|
+            params[:options_attributes] << {key: $~[:key].strip, content: $~[:value].strip}
+          }
+        when "【答案】"
+          if params[:options_attributes]
+            $~[:value].scan(/[\(（][A-Z][\)）]/).each{|m|
+              params[:options_attributes].each{|item|
+                item[:is_answer] = true if item[:key].strip == m.strip
+              }
+            }
+            params[:options_attributes].each{|item| item.delete :key}
+          end
         when "【科目】"
           params[:subject_list] = $~[:value].strip.gsub(/、/, ',')
         when "【題型】"

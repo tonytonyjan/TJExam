@@ -16,9 +16,11 @@ zh-TW:
     models:
       question: 試題
       exam_paper: 試卷
+      option: 選項
     attributes:
       question:
         content: 內容
+        solution: 詳解
       exam_paper:
         name: 名稱
         questions: 試題

@@ -2,11 +2,20 @@
   <%= render "share/mathjax" %>
 <% end %>
 
-<%= simple_form_for @question do |f| %>
+<%= simple_nested_form_for @question do |f| %>
   <%= error_message f.object %>
   <div class="row">
     <div class="span6">
       <%= f.input :content, :input_html => {:class => "span6"} %>
+      <h3><%= Option.model_name.human count: 2 %></h3>
+      <%= f.simple_fields_for :options do |ff| %>
+        <%= ff.input :content, label: false %>
+        <%= ff.input :is_answer %>
+        <%= ff.link_to_remove t("tj.form.destroy")+Option.model_name.human %>
+        <hr>
+      <% end %>
+      <%= f.link_to_add t("helpers.submit.create", model: Option.model_name.human), :options %>
+      <%= f.input :solution, :input_html => {:class => "span6"} %>
       <%= f.input :subject_list %>
       <%= f.input :question_type_list %>
       <%= f.input :knowledge_point_list %>

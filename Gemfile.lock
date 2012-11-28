@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: b790a362b1b79f5b171c994a5db0c7c0d5b54e69
+  specs:
+    nested_form (0.3.1)
+
+GIT
   remote: git://github.com/tonytonyjan/tj_rails_extension.git
   revision: 70c515ca30ddc03193a2aabb6bcf3499610b2966
   specs:
@@ -153,6 +159,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   dynamic_form
   jquery-rails
+  nested_form!
   nokogiri
   rails (= 3.2.8)
   rails-i18n

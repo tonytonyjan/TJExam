@@ -8,6 +8,7 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 gem 'simple_form'
 gem 'dynamic_form'
+gem 'nested_form', :git => "git://github.com/ryanb/nested_form.git"
 gem 'rails-i18n'
 gem 'carrierwave'
 gem 'thin'

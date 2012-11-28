@@ -10,6 +10,12 @@
         <!-- 參考：http://guides.rubyonrails.org/form_helpers.html#combining-them -->
         <%= simple_fields_for "questions[]", q do |f| %>
           <%= f.input :content, input_html: {rows: 10, class: "span6 content"} %>
+          <h3><%= Option.model_name.human count: 2 %></h3>
+          <%= f.simple_fields_for :options do |ff| %>
+            <%= ff.input :content, label: false %>
+            <%= ff.input :is_answer %>
+          <% end %>
+          <%= f.input :solution, input_html: {rows: 10, class: "span6 content"} %>
           <%= f.input :subject_list %>
           <%= f.input :question_type_list %>
           <%= f.input :knowledge_point_list %>
@@ -23,6 +29,7 @@
         <div class="well preview"></div>
       </div>
     </div>
+    <hr>
   <% end %>
   <%= submit_tag %>
 <% end %>
