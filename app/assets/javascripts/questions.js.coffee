@@ -2,13 +2,32 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$ () ->
-  content = $('#question_content')
-  preview = $('#question_preview')
-
-  updatePreview = () ->
-    ary = content.val().match(/\$[^\$]*\$/g)
-    preview.text ary?.join() ? ""
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub])
-  updatePreview()
-  content.bind('keyup', updatePreview)
+SITE.questions =
+  new: () ->
+    this.form()
+  create: () ->
+    this.form()
+  edit: () ->
+    this.form()
+  update: () ->
+    this.form()
+  import_edit: () ->
+    converter = new Markdown.Converter()
+    rows = $('.question-row')
+    rows.each (key, value) ->
+      content = $(value).find('.content')
+      preview = $(value).find('.preview')
+      updatePreview = () ->
+        preview.html(converter.makeHtml(content.val()))
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+      updatePreview()
+      content.bind('keyup', updatePreview)
+  form: () ->
+    content = $('#question_content')
+    preview = $('#question_preview')
+    converter = new Markdown.Converter()
+    updatePreview = () ->
+      preview.html(converter.makeHtml(content.val()))
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+    updatePreview()
+    content.bind('keyup', updatePreview)

@@ -13,6 +13,8 @@ gem 'carrierwave'
 gem 'thin'
 gem 'nokogiri'
 gem 'acts-as-taggable-on'
+gem 'cancan'
+gem "tj_rails_extension", :git => "git://github.com/tonytonyjan/tj_rails_extension.git"
 
 
 # Gems used only for assets and not required

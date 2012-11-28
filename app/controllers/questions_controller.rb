@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
-  before_filter :simple_find, :only => [:show, :edit, :update, :destroy]
+  load_resource
   before_filter :simple_header
-  before_filter :simple_resource
   
   def index
+    @questions = Question.all
   end
 
   def show
@@ -20,6 +20,11 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    if @question.update_attributes params[:question]
+      redirect_to @question
+    else
+      render "edit"
+    end
   end
 
   def destroy
@@ -32,10 +37,20 @@ class QuestionsController < ApplicationController
   def import_edit
     @header = "Edit Imported File"
     uploaded_io = params[:doc_file]
-    ary = TJExam::gen params[:doc_file].tempfile.path
-    @questions = ary.map{|item| Question.new content: item}
+    # ary = TJExam::ImportTool::gen params[:doc_file].tempfile.path
+    ary = TJExam::ImportTool::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format_2/90math-1_format_2.html"))
+    @questions = ary.map{|hash| Question.new hash}
   end
 
   def import_save
+    @questions = Question.create params[:questions]
+    @questions.select! &:invalid?
+    unless @questions.present?
+      flash[:notice] = t("tj.succeeded")
+      redirect_to questions_path
+    else
+      @header = "Edit Imported File"
+      render "import_edit"
+    end
   end
 end
