@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
                   :source_list, :concept_list, :solution, :options_attributes
   has_and_belongs_to_many :exam_papers
   has_many :options, dependent: :destroy # d. 答案選項 for 選擇題
+  has_many :images, :as => :imageable
   accepts_nested_attributes_for :options, allow_destroy: true, reject_if: :all_blank
   acts_as_taggable
   acts_as_taggable_on :subjects # a. 科目 (英文, 數學, 自然...)
