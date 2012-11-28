@@ -8,13 +8,14 @@ module TJExam
     def self.gen doc_filepath
       ary = nil
       Dir.mktmpdir{|dir|
+        @tmp_dir = dir
         `unoconv -o #{dir} -f html #{doc_filepath}`
         unless $?.success?
           $stderr.puts $?
           break
         end
         html_file_name = File::join(dir, File::basename(doc_filepath).sub(/\.[^\.\/]+$|$/, '.html'))
-        File::open(html_file_name){|f| 
+        File::open(html_file_name){|f|
           ary = TJExam::ImportTool::parse(f)
         }
       }
@@ -35,7 +36,15 @@ module TJExam
       doc.css('body *').each{|node|
         if %w(img table tr td thead tbody u).include?(node.name)
           # Keep image source
-          node.attributes.each_value{|attr| attr.remove unless attr.name == "src"}
+          node.attributes.each_value{|attr|
+            if attr.name == "src"
+              image = Image.new file: File::open(File::join(@tmp_dir, attr.value))
+              attr.value = image.file_url
+            elsif %w(width height).include?(attr.name)
+            else
+              attr.remove
+            end
+          }
         else
           # Strip tag
           node.swap(node.children)
@@ -92,8 +101,8 @@ module TJExam
 end
 
 if $0 == __FILE__
-  # p TJExam::ImportTool::gen "/home/tonytonyjan/codes/tmp/90math-1_format.doc"
-  ary = TJExam::ImportTool::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format_2/90math-1_format_2.html"))
+  ary = TJExam::ImportTool::gen "/home/tonytonyjan/codes/tmp/90math-1_format_2.doc"
+  #ary = TJExam::ImportTool::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format_2/90math-1_format_2.html"))
   pp ary[0]
   #TJExam::ImportTool::process_question(ary[1])
 end
