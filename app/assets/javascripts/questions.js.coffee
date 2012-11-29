@@ -22,6 +22,8 @@ SITE.questions =
         MathJax.Hub.Queue(["Typeset",MathJax.Hub])
       updatePreview()
       content.bind('keyup', updatePreview)
+  import_save: () ->
+    this.import_edit()
   form: () ->
     content = $('#question_content')
     preview = $('#question_preview')

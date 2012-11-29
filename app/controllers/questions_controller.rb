@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question.images.new
   end
 
   def update
@@ -38,11 +39,12 @@ class QuestionsController < ApplicationController
     @header = "Edit Imported File"
     uploaded_io = params[:doc_file]
     ary = TJExam::ImportTool::gen params[:doc_file].tempfile.path
-    # ary = TJExam::ImportTool::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format_2/90math-1_format_2.html"))
+    #ary = TJExam::ImportTool::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format_2/90math-1_format_2.html"))
     @questions = ary.map{|hash| Question.new hash}
   end
 
   def import_save
+    params[:questions].each{|q|q[:image_ids] = q[:image_ids].split(/[,\[\]]/)}
     @questions = Question.create params[:questions]
     @questions.select! &:invalid?
     unless @questions.present?

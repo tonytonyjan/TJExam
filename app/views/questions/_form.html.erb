@@ -2,7 +2,7 @@
   <%= render "share/mathjax" %>
 <% end %>
 
-<%= simple_nested_form_for @question do |f| %>
+<%= simple_nested_form_for @question, html: {multipart: true} do |f| %>
   <%= error_message f.object %>
   <div class="row">
     <div class="span6">

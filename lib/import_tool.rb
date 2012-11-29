@@ -9,12 +9,12 @@ module TJExam
       ary = nil
       Dir.mktmpdir{|dir|
         @tmp_dir = dir
-        `unoconv -o #{dir} -f html #{doc_filepath}`
+        `unoconv -o #{@tmp_dir} -f html #{doc_filepath}`
         unless $?.success?
           $stderr.puts $?
           break
         end
-        html_file_name = File::join(dir, File::basename(doc_filepath).sub(/\.[^\.\/]+$|$/, '.html'))
+        html_file_name = File::join(@tmp_dir, File::basename(doc_filepath).sub(/\.[^\.\/]+$|$/, '.html'))
         File::open(html_file_name){|f|
           ary = TJExam::ImportTool::parse(f)
         }
@@ -28,18 +28,23 @@ module TJExam
       # Convert image tag to Markdown format
       # doc.css('body img').each{|node| node.replace("![alt](#{node['src']})")}
       strip_tags!(doc)
+      pp @images
       ary = separate(doc, "==SEPARATOR==")
       ary[1,ary.length].map{|string| process_question(string)}
     end
 
     def self.strip_tags! doc
+      @images = {}
       doc.css('body *').each{|node|
         if %w(img table tr td thead tbody u).include?(node.name)
           # Keep image source
           node.attributes.each_value{|attr|
             if attr.name == "src"
-              image = Image.new file: File::open(File::join(@tmp_dir, attr.value))
-              attr.value = image.file_url
+              if @tmp_dir
+                img = Image.create file: File::open(File::join(@tmp_dir, attr.value))
+                attr.value = img.file_url
+                @images[attr.value] = img
+              end
             elsif %w(width height).include?(attr.name)
             else
               attr.remove
@@ -95,6 +100,10 @@ module TJExam
         end
       }
       params[:content] = string.gsub(reg, '').strip
+      params[:image_ids] = []
+      params[:content].scan(/<img[^>]*src="(?<src>[^"]*)"[^>]*>/){|m|
+        params[:image_ids] << @images[$~[:src]].id if @images[$~[:src]]
+      }
       params
     end
   end

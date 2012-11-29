@@ -49,4 +49,5 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem "rspec-rails"
+  gem "debugger"
 end
