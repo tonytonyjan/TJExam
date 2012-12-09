@@ -4,9 +4,9 @@
 <ul>
   <% @questions.each do |q| %>
     <li>
-      <pre>
-        <%= q.content %>
-      </pre>
+      <%= content_tag_for :div, q do %>
+        <div class="content"><%= q.content.html_safe %></div>
+      <% end %>
       <%= link_to "Show", q %>
       <%= link_to "Edit", edit_question_path(q) %>
       <%= link_to "Delete", q, :method => :delete, :confirm => "Are you sure?" %>

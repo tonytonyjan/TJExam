@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 SITE.questions =
+  index: () ->
+    converter = new Markdown.Converter()
+    $('.content').each (key, value) ->
+      content = $(value)
+      content.html(converter.makeHtml(content.html()))
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub])
   new: () ->
     this.form()
   create: () ->
