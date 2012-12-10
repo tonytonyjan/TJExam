@@ -44,3 +44,13 @@ APP.questions =
       MathJax.Hub.Queue(["Typeset",MathJax.Hub])
     updatePreview()
     content.bind('keyup', updatePreview)
+    # option preview
+    $('.option-row').each (key, value) ->
+      updateOptoinPreview = () ->
+        value = $(value)
+        content = value.find('.option-content')
+        preview = value.find('.option-preview')
+        preview.html(converter.makeHtml(content.val()))
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+      updateOptoinPreview()
+      content.bind('keyup', updateOptoinPreview)
