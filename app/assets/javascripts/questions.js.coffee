@@ -48,9 +48,9 @@ APP.questions =
     $('.option-row').each (key, value) ->
       updateOptoinPreview = () ->
         value = $(value)
-        content = value.find('.option-content')
-        preview = value.find('.option-preview')
-        preview.html(converter.makeHtml(content.val()))
+        option_content = value.find('.option-content')
+        option_preview = value.find('.option-preview')
+        option_preview.html(converter.makeHtml(option_content.val()))
         MathJax.Hub.Queue(["Typeset",MathJax.Hub])
       updateOptoinPreview()
-      content.bind('keyup', updateOptoinPreview)
+      $(value).find('.option-content').bind('keyup', updateOptoinPreview)
