@@ -9,6 +9,11 @@ SITE.questions =
       content = $(value)
       content.html(converter.makeHtml(content.html()))
       MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+  show: () ->
+    converter = new Markdown.Converter()
+    content = $('#content')
+    content.html(converter.makeHtml(content.html()))
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub])
   new: () ->
     this.form()
   create: () ->
