@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  load_resource
-  before_filter :simple_header
+  load_and_authorize_resource
+  before_filter :set_header, only: [:index, :show, :new, :edit]
   
   def index
     @questions = Question.all

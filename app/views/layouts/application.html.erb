@@ -30,7 +30,7 @@
     <%= render "share/navbar" %>
     <div class="container">
       <%= notice_message %>
-      <%= page_header @header if @header.present? %>
+      <%= page_header @header if @header %>
       <%= yield %>
       <hr>
       <footer>

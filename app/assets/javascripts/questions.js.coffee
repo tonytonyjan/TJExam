@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-SITE.questions =
+APP.questions =
   index: () ->
     converter = new Markdown.Converter()
     $('.content').each (key, value) ->
