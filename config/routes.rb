@@ -11,8 +11,6 @@ Tjexam::Application.routes.draw do
   end
 
   get "home/index"
-  get "home/about"
-  get "home/contact"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
