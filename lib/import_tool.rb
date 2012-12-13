@@ -28,7 +28,6 @@ module TJExam
       # Convert image tag to Markdown format
       # doc.css('body img').each{|node| node.replace("![alt](#{node['src']})")}
       strip_tags!(doc)
-      pp @images
       ary = separate(doc, "==SEPARATOR==")
       ary[1,ary.length].map{|string| process_question(string)}
     end
@@ -67,36 +66,37 @@ module TJExam
       reg = /(?<key>【[^】]*】)(?<value>[^【]*)/m
       params = {}
       string.scan(reg){|m|
-        case $~[:key].strip
+        group_key, group_value = $~[:key].strip, $~[:value].strip
+        puts group_key, "-----------------------------------"
+        case group_key
         when "【答案選項】"
-          options_reg = /(?<key>[\(（][A-Z][\)）])(?<value>[^\(（]*)/m
+          options_reg = /(?<key>[\(（][A-Z][\)）])(?<value>[^\(]*)/m
           params[:options_attributes] = []
-          $~[:value].scan(options_reg){|mm|
+          group_value.scan(options_reg){|mm|
             params[:options_attributes] << {key: $~[:key].strip, content: $~[:value].strip}
           }
-        when "【答案】"
+        when /【[^【]*答案】/
           if params[:options_attributes]
-            $~[:value].scan(/[\(（][A-Z][\)）]/).each{|m|
+            group_value.scan(/[\(（][A-Z][\)）]/).each{|m|
               params[:options_attributes].each{|item|
                 item[:is_answer] = true if item[:key].strip == m.strip
               }
             }
-            params[:options_attributes].each{|item| item.delete :key}
           end
         when "【科目】"
-          params[:subject_list] = $~[:value].strip.gsub(/、/, ',')
+          params[:subject_list] = group_value.gsub(/、/, ',')
         when "【題型】"
-          params[:question_type_list] = $~[:value].strip.gsub(/、/, ',')
+          params[:question_type_list] = group_value.gsub(/、/, ',')
         when "【知識點】"
-          params[:knowledge_point_list] = $~[:value].strip.gsub(/、/, ',')
+          params[:knowledge_point_list] = group_value.gsub(/、/, ',')
         when "【章節來源】"
-          params[:chapter_location_list] = $~[:value].strip.gsub(/、/, ',')
+          params[:chapter_location_list] = group_value.gsub(/、/, ',')
         when "【來源】"
-          params[:location_list] = $~[:value].strip.gsub(/、/, ',')
+          params[:location_list] = group_value.gsub(/、/, ',')
         when "【來源出處】"
-          params[:source_list] = $~[:value].strip.gsub(/、/, ',')
+          params[:source_list] = group_value.gsub(/、/, ',')
         when "【學習概念】"
-          params[:concept_list] = $~[:value].strip.gsub(/、/, ',')
+          params[:concept_list] = group_value.gsub(/、/, ',')
         end
       }
       params[:content] = string.gsub(reg, '').strip
@@ -104,14 +104,14 @@ module TJExam
       params[:content].scan(/<img[^>]*src="(?<src>[^"]*)"[^>]*>/){|m|
         params[:image_ids] << @images[$~[:src]].id if @images[$~[:src]]
       }
+      params[:options_attributes].each{|item| item.delete :key} if params[:options_attributes]
       params
     end
   end
 end
 
 if $0 == __FILE__
-  ary = TJExam::ImportTool::gen "/home/tonytonyjan/codes/tmp/90math-1_format_2.doc"
-  #ary = TJExam::ImportTool::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format_2/90math-1_format_2.html"))
-  pp ary[0]
-  #TJExam::ImportTool::process_question(ary[1])
+  #ary = TJExam::ImportTool::gen "/home/tonytonyjan/codes/tmp/90math-1_format_3.doc"
+  ary = TJExam::ImportTool::parse(File::open("/home/tonytonyjan/codes/tmp/90math-1_format_3/90math-1_format_3.html"))
+  pp ary
 end
