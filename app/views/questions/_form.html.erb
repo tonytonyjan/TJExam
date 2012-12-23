@@ -16,13 +16,13 @@
   
   <h3><%= Option.model_name.human count: 2 %></h3>
   <%= f.simple_fields_for :options do |ff| %>
-    <div class="row option-row">
-      <div class="span3">
+    <div class="row-fluid option-row">
+      <div class="span6">
         <%= ff.input :content, label: false, input_html: {class: 'option-content'} %>
         <%= ff.input :is_answer %>
         <%= ff.link_to_remove t("tj.form.destroy")+Option.model_name.human %>
       </div>
-      <div class="span3">
+      <div class="span6">
         <div class="well">
           <div class="option-preview"></div>
         </div>

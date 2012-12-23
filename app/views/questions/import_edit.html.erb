@@ -5,7 +5,7 @@
 <%= form_tag import_save_questions_path do %>
   <% @questions.each do |q| %>
     <%= error_message q %>
-    <div class="row question-row">
+    <div class="row-fluid question-row">
       <div class="span6">
         <!-- 參考：http://guides.rubyonrails.org/form_helpers.html#combining-them -->
         <%= simple_fields_for "questions[]", q do |f| %>
