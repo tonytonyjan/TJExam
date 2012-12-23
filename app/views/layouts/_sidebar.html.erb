@@ -1,0 +1,41 @@
+<ul class="nav nav-tabs nav-stacked">
+  <%= nav_li 'Item 1', '#' %>
+  <%= nav_li 'Item 2', '#' %>
+  <%= nav_li 'Item 3', '#' %>
+</ul>
+
+
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Group 1
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <ul class="nav nav-pills nav-stacked">
+          <%= nav_li 'Item 1', '#' %>
+          <%= nav_li 'Item 2', '#' %>
+          <%= nav_li 'Item 3', '#' %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        Group 2
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <ul class="nav nav-pills nav-stacked">
+          <%= nav_li 'Item 1', '#' %>
+          <%= nav_li 'Item 2', '#' %>
+          <%= nav_li 'Item 3', '#' %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

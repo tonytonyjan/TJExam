@@ -4,7 +4,7 @@
 
 <%= simple_nested_form_for @question, html: {multipart: true} do |f| %>
   <%= error_message f.object %>
-  <div class="row">
+  <div class="row-fluid">
     <div class="span6">
       <%= f.input :content, :input_html => {:class => "span6"} %>
     </div>
@@ -31,7 +31,7 @@
     <hr>
   <% end %>
   <%= f.link_to_add t("helpers.submit.create", model: Option.model_name.human), :options %>
-  <div class="row">
+  <div class="row-fluid">
     <div class="span6">
       <%= f.input :solution, :input_html => {:class => "span6"} %>
     </div>

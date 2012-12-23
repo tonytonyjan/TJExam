@@ -28,10 +28,15 @@
   </head>
   <body class="<%= controller_name %> <%= action_name %>" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
     <%= render "share/navbar" %>
-    <div class="container">
-      <%= notice_message %>
-      <%= page_header @header if @header %>
-      <%= yield %>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2"><%= render 'layouts/sidebar' %></div>
+        <div class="span10">
+          <%= notice_message %>
+          <%= page_header @header if @header %>
+          <%= yield %>
+        </div>
+      </div>
       <hr>
       <footer>
         <p>&copy; tonytonyjan 2012</p>
