@@ -6,7 +6,7 @@
   <%= error_message f.object %>
   <div class="row-fluid">
     <div class="span6">
-      <%= f.input :content, :input_html => {:class => "span6"} %>
+      <%= f.input :content, input_html: {class: "span12"} %>
     </div>
     <div class="span6">
       <p><%= t("share.preview") %></p>
@@ -33,7 +33,7 @@
   <%= f.link_to_add t("helpers.submit.create", model: Option.model_name.human), :options %>
   <div class="row-fluid">
     <div class="span6">
-      <%= f.input :solution, :input_html => {:class => "span6"} %>
+      <%= f.input :solution, :input_html => {:class => "span12"} %>
     </div>
     <div class="span6">
       <p><%= t("share.preview") %></p>

@@ -33,6 +33,24 @@ APP.questions =
         MathJax.Hub.Queue(["Typeset",MathJax.Hub])
       updatePreview()
       content.bind('keyup', updatePreview)
+      # solution preview
+      solution_content = $(value).find('.question_solution')
+      solution_preview = $(value).find('.solution_preview')
+      updateSolutionPreview = () ->
+        solution_preview.html(converter.makeHtml(solution_content.val()))
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+      updateSolutionPreview()
+      solution_content.bind('keyup', updateSolutionPreview)
+    # option preview
+    $('.option-row').each (key, value) ->
+      updateOptoinPreview = () ->
+        value = $(value)
+        option_content = value.find('.option-content')
+        option_preview = value.find('.option-preview')
+        option_preview.html(converter.makeHtml(option_content.val()))
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+      updateOptoinPreview()
+      $(value).find('.option-content').bind('keyup', updateOptoinPreview)
   import_save: () ->
     this.import_edit()
   form: () ->
@@ -52,6 +70,7 @@ APP.questions =
       MathJax.Hub.Queue(["Typeset",MathJax.Hub])
     updateSolutionPreview()
     solution_content.bind('keyup', updateSolutionPreview)
+    this.options_preview()
     # option preview
     $('.option-row').each (key, value) ->
       updateOptoinPreview = () ->
