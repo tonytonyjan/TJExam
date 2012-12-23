@@ -10,7 +10,8 @@
       <div class="question-row">
         <div class="row-fluid">
           <div class="span6">
-            <%= f.input :content, input_html: {rows: 10, class: "span12 content"}  %>
+            <%= link_to t('formula_generator'), "http://www.codecogs.com/latex/eqneditor.php", target: '_blank' %>
+            <%= f.input :content, input_html: {class: "span12 content"}  %>
           </div>
           <div class="span6">
             <p><%= t("share.preview") %></p>

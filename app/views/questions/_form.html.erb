@@ -6,6 +6,7 @@
   <%= error_message f.object %>
   <div class="row-fluid">
     <div class="span6">
+      <%= link_to t('formula_generator'), "http://www.codecogs.com/latex/eqneditor.php", target: '_blank' %>
       <%= f.input :content, input_html: {class: "span12"} %>
     </div>
     <div class="span6">
