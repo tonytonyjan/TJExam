@@ -10,7 +10,29 @@
       <div class="question-row">
         <div class="row-fluid">
           <div class="span6">
-            <%= link_to t('formula_generator'), "http://www.codecogs.com/latex/eqneditor.php", target: '_blank' %>
+            <%= link_to t('formula_generator'), "http://www.codecogs.com/latex/eqneditor.php", target: '_blank' %><br>
+            <%= link_to Image.model_name.human(count: 2), "#images-#{q.__id__}", :role => 'button', 'data-toggle' => :modal %>
+            <div id="images-<%= q.__id__ %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">header</h3>
+              </div>
+              <div class="modal-body">
+                <ul class="thumbnails">
+                  <% q.images.each do |img|%>
+                  <li class="span2">
+                    <a class="thumbnail">
+                      <%= image_tag img.file_url %>
+                    </a>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary">XXX</button>
+              </div>
+            </div>
             <%= f.input :content, input_html: {class: "span12 content"}  %>
           </div>
           <div class="span6">
