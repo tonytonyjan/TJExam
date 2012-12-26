@@ -1,0 +1,10 @@
+<%= javascript_include_tag '/tiny_mce/tiny_mce' %>
+<script type="text/javascript">
+  tinyMCE.init({
+    mode : "textareas",
+    language : 'zh-tw',
+    plugins : "latex,inlinepopups",
+    theme_advanced_buttons3_add: "latex",
+    external_image_list_url: "/myexternallist.js"
+  });
+</script>

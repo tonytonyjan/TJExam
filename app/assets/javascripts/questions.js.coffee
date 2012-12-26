@@ -70,7 +70,6 @@ APP.questions =
       MathJax.Hub.Queue(["Typeset",MathJax.Hub])
     updateSolutionPreview()
     solution_content.bind('keyup', updateSolutionPreview)
-    this.options_preview()
     # option preview
     $('.option-row').each (key, value) ->
       updateOptoinPreview = () ->
