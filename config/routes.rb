@@ -8,6 +8,9 @@ Tjexam::Application.routes.draw do
       post "import_edit"
       post "import_save"
     end
+    member do
+      get 'images'
+    end
   end
 
   get "home/index"

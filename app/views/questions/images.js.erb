@@ -1,0 +1,6 @@
+var tinyMCEImageList = new Array(
+  // Name, URL
+  <% @images.each_with_index do |img, i| %>
+  <%= "," unless i == 0%>["image-<%= i %>", "<%= img.file_url %>"]
+  <% end %>
+);

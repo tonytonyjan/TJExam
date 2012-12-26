@@ -1,6 +1,14 @@
 <%= content_for :head do %>
   <%= render "share/mathjax" %>
-  <%= render 'share/tiny_mce' %>
+  <%= javascript_include_tag '/tiny_mce/tiny_mce' %>
+  <script type="text/javascript">
+    tinyMCE.init({
+      mode : "textareas",
+      language : 'zh-tw',
+      plugins : "latex,inlinepopups,advimage",
+      theme_advanced_buttons3_add: "latex"
+    });
+  </script>
 <% end %>
 
 <%= form_tag import_save_questions_path do %>

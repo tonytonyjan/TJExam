@@ -31,6 +31,11 @@ class QuestionsController < ApplicationController
   def destroy
   end
 
+  def images
+    @images = @question.images
+    render 'images.js'
+  end
+
   def import_upload
     @header = "Import Questions"
   end
