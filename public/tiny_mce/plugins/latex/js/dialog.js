@@ -20,7 +20,7 @@ var LatexDialog = {
 
 		var latexCode = document.forms[0].latex_code.value;
 
-		var img = '<img class="latex" src="' + LatexDialog.getSrc(latexCode) + '" alt="'+ latexCode +'"/>';
+		var img = '<img class="latex" style="vertical-align: middle;" src="' + LatexDialog.getSrc(latexCode) + '" alt="'+ latexCode +'"/>';
 
 		tinyMCEPopup.editor.execCommand('mceInsertContent', false, img);
 		tinyMCEPopup.close();
